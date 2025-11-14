@@ -1,0 +1,59 @@
+{
+  "info": {
+    "name": "Invoice Service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "eg-assessment-invoice-service-sample"
+  },
+  "item": [
+    {
+      "name": "Create Invoice",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 199.99,\n  \"dueDate\": \"2021-09-11\"\n}"
+        },
+        "url": { "raw": "http://localhost:8080/invoices", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["invoices"] }
+      }
+    },
+    {
+      "name": "List Invoices",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/invoices", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["invoices"] }
+      }
+    },
+    {
+      "name": "Get Invoice",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:8080/invoices/{{invoiceId}}", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["invoices","{{invoiceId}}"] }
+      }
+    },
+    {
+      "name": "Pay Invoice",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 159.99\n}"
+        },
+        "url": { "raw": "http://localhost:8080/invoices/{{invoiceId}}/payments", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["invoices","{{invoiceId}}","payments"] }
+      }
+    },
+    {
+      "name": "Process Overdue",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"lateFee\": 10.5,\n  \"overdueDays\": 10\n}"
+        },
+        "url": { "raw": "http://localhost:8080/invoices/process-overdue", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["invoices","process-overdue"] }
+      }
+    }
+  ]
+}
